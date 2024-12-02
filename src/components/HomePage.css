@@ -1,0 +1,131 @@
+/*@tailwind base;*/
+/*@tailwind components;*/
+/*@tailwind utilities;*/
+
+/** {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+/*body {*/
+/*    font-family: Arial, sans-serif;*/
+/*    color: #333;*/
+/*}*/
+
+/*header {*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    padding: 20px;*/
+/*    background-color: #34ce8e;*/
+/*    color: white;*/
+/*}*/
+
+/*header .logo {*/
+/*    font-size: 24px;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*header nav ul {*/
+/*    list-style: none;*/
+/*    display: flex;*/
+/*    gap: 20px;*/
+/*}*/
+
+/*header nav a {*/
+/*    color: white;*/
+/*    text-decoration: none;*/
+/*}*/
+
+/*header nav a:hover {*/
+/*    text-decoration: underline;*/
+/*}*/
+
+/*.hero {*/
+/*    background-color: #f3f3f3;*/
+/*    padding: 60px 20px;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.hero h1 {*/
+/*    font-size: 36px;*/
+/*    margin-bottom: 10px;*/
+/*}*/
+
+/*.hero p {*/
+/*    font-size: 18px;*/
+/*    margin-bottom: 20px;*/
+/*}*/
+
+/*.hero button {*/
+/*    padding: 10px 20px;*/
+/*    font-size: 18px;*/
+/*    background-color: #34ce8e;*/
+/*    color: white;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*    border-radius: 5px;*/
+/*}*/
+
+/*.hero button:hover {*/
+/*    background-color: #2cba78;*/
+/*}*/
+
+/*.section {*/
+/*    padding: 40px 20px;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.section h2 {*/
+/*    font-size: 28px;*/
+/*    margin-bottom: 20px;*/
+/*}*/
+
+/*.language-container, .teacher-container, .review-container {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    gap: 20px;*/
+/*    flex-wrap: wrap;*/
+/*}*/
+
+/*.language-card, .teacher-card, .review-card {*/
+/*    width: 200px;*/
+/*    padding: 20px;*/
+/*    background-color: #e3f9f4;*/
+/*    border-radius: 8px;*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+/*#contacts p {*/
+/*    font-size: 18px;*/
+/*    margin: 10px 0;*/
+/*}*/
+
+/*footer {*/
+/*    background-color: #34ce8e;*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    padding: 20px;*/
+/*}*/
+
+/*footer .social-links {*/
+/*    margin-top: 10px;*/
+/*}*/
+
+/*footer .social-links a {*/
+/*    color: white;*/
+/*    margin: 0 10px;*/
+/*    text-decoration: none;*/
+/*}*/
+
+/*footer .social-links a:hover {*/
+/*    text-decoration: underline;*/
+/*}*/
+
+/*@media (max-width: 768px) {*/
+/*    .course-card, .teacher-card, .review-card {*/
+/*        width: 100%;*/
+/*        margin-bottom: 20px;*/
+/*    }*/
+/*}*/
