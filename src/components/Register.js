@@ -4,9 +4,15 @@ import {useNavigate} from 'react-router-dom';
 
 const RegisterPage = () => {
     const [loading, setLoading] = useState(false);
+    const [emailValid, setEmailValid] = useState(true);
     const navigate = useNavigate();
 
     const handleRegister = (values) => {
+        if (!emailValid) {
+            message.error('Введите корректный email.');
+            return;
+        }
+
         setLoading(true);
 
         fetch('http://127.0.0.1:8000/auth/register', {
@@ -18,9 +24,9 @@ const RegisterPage = () => {
                 email: values.email,
                 username: values.username,
                 password: values.password,
-                phone_number: values.phone_number,  // добавлено поле для телефона
-                first_name: values.first_name, // добавлено поле для имени
-                last_name: values.last_name, // добавлено поле для фамилии
+                phone_number: values.phone_number,
+                first_name: values.first_name,
+                last_name: values.last_name,
                 is_active: true,
                 is_superuser: false,
                 is_verified: false,
@@ -43,6 +49,31 @@ const RegisterPage = () => {
             .finally(() => setLoading(false));
     };
 
+    const validateEmail = async (email) => {
+        if (!email) {
+            setEmailValid(false);
+            message.error('Email не может быть пустым.');
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/auth/validate_email?email=${encodeURIComponent(email)}`);
+            if (response.ok) {
+                const isValid = await response.json();
+                setEmailValid(isValid);
+                if (!isValid) {
+                    message.error('Некорректный email. Проверьте введенные данные.');
+                }
+            } else {
+                setEmailValid(false);
+                message.error('Ошибка валидации email.');
+            }
+        } catch (error) {
+            setEmailValid(false);
+            message.error('Ошибка соединения с сервером.');
+        }
+    };
+
     return (
         <div className="grid place-items-center min-h-[calc(100vh-80px)] bg-gray-100">
             <div className="w-full max-w-md bg-white p-8 shadow-lg rounded-lg">
@@ -58,7 +89,10 @@ const RegisterPage = () => {
                             {required: true, message: 'Введите ваш email'},
                             {type: 'email', message: 'Некорректный email'},
                         ]}>
-                        <Input placeholder="example@mail.com"/>
+                        <Input
+                            placeholder="example@mail.com"
+                            onBlur={(e) => validateEmail(e.target.value)}
+                        />
                     </Form.Item>
                     <Form.Item
                         label="Имя пользователя"

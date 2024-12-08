@@ -7,6 +7,7 @@ function CoursesPage() {
     const [courses, setCourses] = useState([]);
     const [filteredCourses, setFilteredCourses] = useState([]);
     const [languages, setLanguages] = useState([]);
+    const [priceRange, setPriceRange] = useState({ min: '', max: '' });
 
     useEffect(() => {
         fetch('http://127.0.0.1:8000/courses/get_courses')
@@ -26,26 +27,60 @@ function CoursesPage() {
             .catch(error => console.error("Ошибка при загрузке языков:", error));
     }, []);
 
-    const handleFilterChange = (e) => {
+    const handleLanguageFilterChange = (e) => {
         const filter = e.target.value;
 
-        if (!filter) {
-            setFilteredCourses(courses);
-            return;
+        let filtered = courses;
+        if (filter) {
+            filtered = filtered.filter(course => course.language_id === parseInt(filter));
         }
 
-        const filtered = courses.filter(course => course.language_id === parseInt(filter));
+        // Применяем фильтр по цене
+        if (priceRange.min || priceRange.max) {
+            filtered = applyPriceFilter(filtered, priceRange.min, priceRange.max);
+        }
+
         setFilteredCourses(filtered);
+    };
+
+    const handlePriceFilterChange = (e) => {
+        const { name, value } = e.target;
+
+        const updatedPriceRange = { ...priceRange, [name]: value };
+        setPriceRange(updatedPriceRange);
+
+        let filtered = courses;
+
+        // Применяем фильтр по языку
+        const languageFilter = document.querySelector('select').value;
+        if (languageFilter) {
+            filtered = filtered.filter(course => course.language_id === parseInt(languageFilter));
+        }
+
+        // Применяем фильтр по цене
+        filtered = applyPriceFilter(filtered, updatedPriceRange.min, updatedPriceRange.max);
+        setFilteredCourses(filtered);
+    };
+
+    const applyPriceFilter = (courses, minPrice, maxPrice) => {
+        return courses.filter(course => {
+            const price = course.price;
+            return (
+                (!minPrice || price >= parseFloat(minPrice)) &&
+                (!maxPrice || price <= parseFloat(maxPrice))
+            );
+        });
     };
 
     return (
         <div className="flex">
             <aside className="w-1/6 p-4 bg-gray-100 h-screen">
                 <h3 className="text-lg font-semibold mb-4">Фильтры</h3>
-                <label className="block">
+                {/* Фильтр по языку */}
+                <label className="block mb-4">
                     <span className="text-sm font-medium">Язык:</span>
                     <select
-                        onChange={handleFilterChange}
+                        onChange={handleLanguageFilterChange}
                         className="mt-1 block w-full p-2 border border-gray-300 rounded">
                         <option value="">Все</option>
                         {languages.map(language => (
@@ -55,6 +90,29 @@ function CoursesPage() {
                         ))}
                     </select>
                 </label>
+
+                {/* Фильтр по цене */}
+                <div>
+                    <span className="text-sm font-medium">Цена (в $):</span>
+                    <div className="flex space-x-2 mt-1">
+                        <input
+                            type="number"
+                            name="min"
+                            value={priceRange.min}
+                            placeholder="Мин."
+                            onChange={handlePriceFilterChange}
+                            className="w-1/2 p-2 border border-gray-300 rounded"
+                        />
+                        <input
+                            type="number"
+                            name="max"
+                            value={priceRange.max}
+                            placeholder="Макс."
+                            onChange={handlePriceFilterChange}
+                            className="w-1/2 p-2 border border-gray-300 rounded"
+                        />
+                    </div>
+                </div>
             </aside>
 
             <main className="w-3/4 p-4">

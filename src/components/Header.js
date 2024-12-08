@@ -3,11 +3,11 @@ import {Link, useNavigate} from 'react-router-dom';
 
 const Header = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isTeacher, setIsTeacher] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         const verifyToken = async () => {
-            console.log(localStorage.getItem("token"));
             try {
                 const response = await fetch("http://127.0.0.1:8000/auth/verify_token", {
                     method: "GET",
@@ -17,6 +17,7 @@ const Header = () => {
                 });
                 if (response.status === 200) {
                     setIsAuthenticated(true);
+                    checkIfTeacher();
                 } else {
                     setIsAuthenticated(false);
                 }
@@ -26,12 +27,34 @@ const Header = () => {
             }
         };
 
+        const checkIfTeacher = async () => {
+            try {
+                const response = await fetch("http://127.0.0.1:8000/auth/is_teacher", {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                });
+                if (response.status === 200) {
+                    const data = await response.json();
+                    console.log(data);
+                    setIsTeacher(data);
+                } else {
+                    setIsTeacher(false);
+                }
+            } catch (error) {
+                console.error("Ошибка проверки роли преподавателя:", error);
+                setIsTeacher(false);
+            }
+        };
+
         verifyToken();
     }, []);
 
     const handleLogout = () => {
         localStorage.removeItem("token");
         setIsAuthenticated(false);
+        setIsTeacher(false);
         navigate("/");
     };
 
@@ -65,13 +88,26 @@ const Header = () => {
 
                     {isAuthenticated ? (
                         <>
-                            <li>
-                                <Link
-                                    to="/my_courses"
-                                    className="text-white no-underline hover:underline focus:outline-none focus:ring-0">
-                                    Мои курсы
-                                </Link>
-                            </li>
+                            {!isTeacher && (
+                                <li>
+                                    <Link
+                                        to="/my_courses"
+                                        className="text-white no-underline hover:underline focus:outline-none focus:ring-0">
+                                        Мои курсы
+                                    </Link>
+                                </li>
+                            )}
+
+                            {isTeacher && (
+                                <li>
+                                    <Link
+                                        to="/teacher/groups/"
+                                        className="text-white no-underline hover:underline focus:outline-none focus:ring-0">
+                                        Мои группы
+                                    </Link>
+                                </li>
+                            )}
+
                             <li>
                                 <Link
                                     to="/profile"

@@ -38,10 +38,19 @@ const AdminSidebar = () => {
                     <Link to="/admin/requests/" style={{color: "white"}}>Заявки</Link>
                 </Menu.Item>
                 <Menu.Item key="5" style={{color: "white"}}>
-                    <Link to="/admin/reviews/" style={{color: "white"}}>Отзывы</Link>
+                    <Link to="/admin/groups/" style={{color: "white"}}>Группы</Link>
                 </Menu.Item>
                 <Menu.Item key="6" style={{color: "white"}}>
-                    <Link to="/admin/settings/" style={{color: "white"}}>Настройки</Link>
+                    <Link to="/admin/languages/" style={{color: "white"}}>Языки обучения</Link>
+                </Menu.Item>
+                <Menu.Item key="7" style={{color: "white"}}>
+                    <Link to="/admin/age-groups/" style={{color: "white"}}>Возрастные группы</Link>
+                </Menu.Item>
+                <Menu.Item key="8" style={{color: "white"}}>
+                    <Link to="/admin/language-levels/" style={{color: "white"}}>Уровни языков</Link>
+                </Menu.Item>
+                <Menu.Item key="9" style={{color: "white"}}>
+                    <Link to="/admin/comments/" style={{color: "white"}}>Отзывы</Link>
                 </Menu.Item>
             </Menu>
         </Sider>

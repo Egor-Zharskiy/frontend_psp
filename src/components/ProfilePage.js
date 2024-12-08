@@ -69,19 +69,6 @@ const ProfilePage = () => {
         fetchUserData();
     }, []);
 
-    useEffect(() => {
-        const fetchCourseRequests = async () => {
-            const response = await apiFetch("http://127.0.0.1:8000/courses/get_user_course_requests", {method: "GET"});
-            if (response && response.ok) {
-                const data = await response.json();
-                setCourseRequests(data);
-            } else if (response) {
-                message.error("Не удалось загрузить заявки на курсы.");
-            }
-        };
-
-        fetchCourseRequests();
-    }, []);
 
     const handleEditSubmit = async (values) => {
         const response = await apiFetch("http://127.0.0.1:8000/auth/me", {
@@ -99,6 +86,22 @@ const ProfilePage = () => {
             message.error("Ошибка при обновлении профиля.");
         }
     };
+
+    useEffect(() => {
+        const fetchCourseRequests = async () => {
+            if (!user) return;
+
+            const response = await apiFetch(`http://127.0.0.1:8000/courses/get_user_course_requests/${user.id}`, {method: "GET"});
+            if (response && response.ok) {
+                const data = await response.json();
+                setCourseRequests(data);
+            } else if (response) {
+                message.error("Не удалось загрузить заявки на курсы.");
+            }
+        };
+
+        fetchCourseRequests();
+    }, [user]);
 
     if (!user) {
         return <div className="text-center mt-20 text-lg">Загрузка профиля...</div>;

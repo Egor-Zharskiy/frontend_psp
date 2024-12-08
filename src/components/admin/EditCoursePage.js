@@ -39,6 +39,7 @@ const EditCoursePage = () => {
             }
         };
 
+
         const fetchReferenceData = async () => {
             try {
                 const [langsRes, formatsRes, ageGroupsRes, levelsRes] = await Promise.all([
@@ -69,6 +70,7 @@ const EditCoursePage = () => {
                 setFormats(await formatsRes.json());
                 setAgeGroups(await ageGroupsRes.json());
                 setLevels(await levelsRes.json());
+                console.log(levels);
             } catch (error) {
                 message.error("Не удалось загрузить справочные данные");
             }
@@ -102,7 +104,12 @@ const EditCoursePage = () => {
         } finally {
             setLoading(false);
         }
+
+
     };
+    useEffect(() => {
+        console.log(levels);
+    }, [levels]);
 
     return (
         <Layout>

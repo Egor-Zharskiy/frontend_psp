@@ -197,7 +197,6 @@ const UsersAdminPage = () => {
                         }}
                     />
                 </Content>
-                <Footer style={{textAlign: "center"}}>© 2024 ZharSchool</Footer>
             </Layout>
         </Layout>
     );

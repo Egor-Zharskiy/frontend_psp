@@ -1,14 +1,14 @@
 // pages/AdminMainPage.js
 import React from "react";
-import { Layout, Breadcrumb } from "antd";
+import {Layout, Breadcrumb} from "antd";
 import AdminSidebar from "./AdminSideBar";
 
-const { Header, Content, Footer } = Layout;
+const {Header, Content, Footer} = Layout;
 
 const AdminMainPage = () => {
     return (
         <Layout>
-            <AdminSidebar />
+            <AdminSidebar/>
             <Layout>
                 <Header
                     className="shadow-md px-4"
@@ -28,9 +28,7 @@ const AdminMainPage = () => {
                         <p>Здесь вы можете управлять данными вашего приложения.</p>
                     </div>
                 </Content>
-                <Footer style={{ textAlign: "center" }}>
-                    © 2024 ZharSchool
-                </Footer>
+
             </Layout>
         </Layout>
     );

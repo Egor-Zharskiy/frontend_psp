@@ -287,7 +287,6 @@ const UserDetailsPage = () => {
                     </Title>
                     <Table dataSource={requests} columns={requestsColumns} rowKey="id" pagination={false}/>
                 </Content>
-                <Footer style={{textAlign: "center"}}>© Школа иностранных языков</Footer>
             </Layout>
         </Layout>
     );

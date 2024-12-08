@@ -26,7 +26,7 @@ function HomePage() {
         <div className="min-h-screen flex flex-col font-sans text-gray-800">
             <section className="bg-gray-100 py-16 text-center">
                 <h1 className="text-4xl font-bold mb-4">Изучайте иностранные языки с нами!</h1>
-                <p className="text-lg mb-6">Запишитесь на курсы и начните учить язык уже сегодня.</p>
+                <p className="text-lg mb-6">Запишитесь на курсы и начните учить язык уже сегодня по самым низким ценам.</p>
                 <button className="px-6 py-3 text-lg p-5 bg-[rgb(66,163,142)] text-white rounded border-none">
                     <Link to="/about" className="text-2xl font-bold text-white no-underline ">Узнать больше</Link>
                 </button>
@@ -64,14 +64,15 @@ function HomePage() {
 
             <section id="contacts" className="py-10 text-center">
                 <h2 className="text-3xl font-semibold mb-4">Контакты</h2>
-                <p className="text-lg mb-2">Адрес: ул. Лингвистическая, 12</p>
-                <p className="text-lg mb-2">Телефон: +7 (123) 456-78-90</p>
-                <p className="text-lg">Email: info@languageschool.ru</p>
+                <p className="text-lg mb-2">Адрес: ул. Якуба Коласа, д.28, 9 этаж</p>
+                <p className="text-lg mb-2">Телефон: +375-444-58-73-18</p>
+                <p className="text-lg">Email: info@zharschool.com</p>
             </section>
 
             <footer className="bg-[rgb(66,163,142)] text-white text-center py-6">
                 <p>&copy; 2024 ZharSchool. Все права защищены.</p>
             </footer>
+
         </div>
     );
 }

@@ -105,8 +105,7 @@ const CreateCoursePage = () => {
                     style={{
                         backgroundColor: "white",
                         color: "black",
-                    }}
-                >
+                    }}>
                     <h1 className="text-xl">Создание курса</h1>
                 </Header>
                 <Content className="p-4 bg-gray-50">
@@ -119,53 +118,46 @@ const CreateCoursePage = () => {
                             levels: [],
                         }}
                         layout="vertical"
-                        style={{maxWidth: "800px", margin: "0 auto"}}
-                    >
+                        style={{maxWidth: "800px", margin: "0 auto"}}>
                         <Form.Item
                             label="Название курса"
                             name="name"
-                            rules={[{required: true, message: "Пожалуйста, введите название курса!"}]}
-                        >
+                            rules={[{required: true, message: "Пожалуйста, введите название курса!"}]}>
                             <Input/>
                         </Form.Item>
 
                         <Form.Item
                             label="Описание курса"
                             name="description"
-                            rules={[{required: true, message: "Пожалуйста, введите описание курса!"}]}
-                        >
+                            rules={[{required: true, message: "Пожалуйста, введите описание курса!"}]}>
                             <Input.TextArea rows={4}/>
                         </Form.Item>
 
                         <Form.Item
                             label="Размер группы"
                             name="group_size"
-                            rules={[{required: true, message: "Пожалуйста, введите размер группы!"}]}
-                        >
+                            rules={[{required: true, message: "Пожалуйста, введите размер группы!"}]}>
                             <InputNumber min={1}/>
                         </Form.Item>
 
                         <Form.Item
                             label="Интенсивность"
                             name="intensity"
-                            rules={[{required: true, message: "Пожалуйста, укажите интенсивность курса!"}]}
-                        >
+                            rules={[{required: true, message: "Пожалуйста, укажите интенсивность курса!"}]}>
                             <Input/>
                         </Form.Item>
 
                         <Form.Item
                             label="Цена"
                             name="price"
-                            rules={[{required: true, message: "Пожалуйста, укажите цену курса!"}]}
-                        >
+                            rules={[{required: true, message: "Пожалуйста, укажите цену курса!"}]}>
                             <InputNumber min={0}/>
                         </Form.Item>
 
                         <Form.Item
                             label="Язык курса"
                             name="language_id"
-                            rules={[{required: true, message: "Пожалуйста, выберите язык курса!"}]}
-                        >
+                            rules={[{required: true, message: "Пожалуйста, выберите язык курса!"}]}>
                             <Select>
                                 {languages.map((language) => (
                                     <Option key={language.id} value={language.id}>
@@ -228,7 +220,6 @@ const CreateCoursePage = () => {
                         </Form.Item>
                     </Form>
                 </Content>
-                <Footer style={{textAlign: "center"}}>© 2024 ZharSchool</Footer>
             </Layout>
         </Layout>
     );

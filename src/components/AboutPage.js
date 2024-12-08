@@ -1,6 +1,8 @@
 // src/components/AboutPage.js
 import React from 'react';
-import { Card, Button } from 'antd';
+import {Card, Button} from 'antd';
+import YandexMap from "./YandexMap";
+
 
 const teamMembers = [
     {
@@ -29,8 +31,10 @@ function AboutPage() {
             <div className="container mx-auto px-6 text-center">
                 <h1 className="text-4xl font-bold text-gray-800 mb-6">О нас</h1>
                 <p className="text-lg text-gray-600 mb-12">
-                    Наша школа иностранных языков предлагает широкий выбор курсов и программ для людей всех возрастов и уровней.
-                    Мы стремимся обеспечить качественное образование, помогая нашим студентам достигать своих языковых целей.
+                    Наша школа иностранных языков предлагает широкий выбор курсов и программ для людей всех возрастов и
+                    уровней.
+                    Мы стремимся обеспечить качественное образование, помогая нашим студентам достигать своих языковых
+                    целей.
                 </p>
 
                 <section className="mb-16">
@@ -39,7 +43,8 @@ function AboutPage() {
                         Мы верим, что изучение языков открывает двери к новым возможностям и расширяет горизонты.
                     </p>
                     <p className="text-lg text-gray-600">
-                        С момента основания наша миссия — помогать людям находить путь к саморазвитию, культурному обмену и лучшему будущему через обучение языкам.
+                        С момента основания наша миссия — помогать людям находить путь к саморазвитию, культурному
+                        обмену и лучшему будущему через обучение языкам.
                     </p>
                 </section>
 
@@ -49,36 +54,47 @@ function AboutPage() {
                         {teamMembers.map((member, index) => (
                             <Card
                                 key={index}
-                                cover={<img alt={member.name} src={member.image} className="h-48 object-cover" />}
+                                cover={<img alt={member.name} src={member.image} className="h-48 object-cover"/>}
                                 className="shadow-md"
                             >
-                                <Card.Meta title={member.name} description={member.role} />
+                                <Card.Meta title={member.name} description={member.role}/>
                                 <p className="mt-4 text-gray-600">{member.description}</p>
                             </Card>
                         ))}
                     </div>
                 </section>
-
-                <section className="mb-16 text-center">
-                    <h2 className="text-3xl font-semibold text-gray-800 mb-6">Наша локация</h2>
-                    <p className="text-lg text-gray-600 mb-6">
-                        Наш офис находится в центре города, на улице Лингвистическая, 12. Мы всегда рады видеть наших студентов
-                        и гостей, чтобы ответить на все ваши вопросы и помочь вам начать ваше языковое путешествие.
-                    </p>
-                    <div className="w-full h-64 bg-gray-300 rounded-lg flex items-center justify-center text-gray-700">
-                        <p>Google Maps API заглушка</p>
-                    </div>
-                </section>
-
                 <section className="text-center">
                     <h2 className="text-3xl font-semibold text-gray-800 mb-6">Присоединяйтесь к нам!</h2>
                     <p className="text-lg text-gray-600 mb-6">
-                        Мы всегда рады новым студентам и преподавателям. Свяжитесь с нами, чтобы узнать больше о курсах и возможностях.
+                        Мы всегда рады новым студентам и преподавателям. Свяжитесь с нами, чтобы узнать больше о курсах
+                        и возможностях.
                     </p>
                     <Button type="primary" size="large" className="bg-blue-500 hover:bg-blue-600 text-white">
                         Связаться с нами
                     </Button>
                 </section>
+
+                <section className="mb-16 text-center">
+                    <h2 className="text-3xl font-semibold text-gray-800 mb-6">Наша локация</h2>
+                    <p className="text-lg text-gray-600 mb-6">
+                        Наш офис находится в центре города, на улице Лингвистическая, 12. Мы всегда рады видеть наших
+                        студентов
+                        и гостей, чтобы ответить на все ваши вопросы и помочь вам начать ваше языковое путешествие.
+                    </p>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div className="w-full h-64 bg-gray-300 rounded-lg flex items-center justify-center text-gray-700">
+                        <YandexMap />
+                    </div>
+                </section>
+
+
             </div>
         </div>
     );

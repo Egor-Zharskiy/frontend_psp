@@ -132,8 +132,7 @@ const AdminCoursesPage = () => {
                     <Button
                         type="primary"
                         style={{marginBottom: 16}}
-                        onClick={() => navigate("/admin/courses/create")}
-                    >
+                        onClick={() => navigate("/admin/courses/create")}>
                         Добавить новый курс
                     </Button>
                     <Table

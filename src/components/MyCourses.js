@@ -5,12 +5,38 @@ const {Title, Text} = Typography;
 
 const MyCourses = () => {
     const [courses, setCourses] = useState([]);
+    const [userId, setUserId] = useState(null);
+
+    useEffect(() => {
+        const fetchUserId = async () => {
+            try {
+                const token = localStorage.getItem("token");
+                const response = await fetch("http://127.0.0.1:8000/auth/me", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error("Ошибка загрузки данных пользователя");
+                }
+                const data = await response.json();
+                setUserId(data.id);
+            } catch (error) {
+                console.error("Ошибка загрузки данных пользователя:", error);
+            }
+        };
+
+        fetchUserId();
+    }, []);
+
 
     useEffect(() => {
         const fetchCourses = async () => {
             try {
+                if (!userId) return;
+
                 const token = localStorage.getItem("token");
-                const response = await fetch("http://127.0.0.1:8000/courses/get_user_courses", {
+                const response = await fetch(`http://127.0.0.1:8000/courses/get_user_courses/${userId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -26,7 +52,7 @@ const MyCourses = () => {
         };
 
         fetchCourses();
-    }, []);
+    }, [userId]);
 
     return (
         <div className="container mx-auto p-4">
